@@ -5,5 +5,5 @@ from src.core.db import SessionLocal
 async def get_db():
     # ④ 调用工厂，创建一个Session
     async with SessionLocal() as session:
-        # ⑤ 把Session提供给调用者
-        yield
+        # ⑤ yield把Session提供给fatsapi调用者,完成后退出退出 async with 然后关闭session
+        yield session

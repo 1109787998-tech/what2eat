@@ -14,14 +14,17 @@ database_naming_convention ={
 }
 
 
+ # 管理全局表结构与命名规则
 class Base(DeclarativeBase): #是 DeclartiveBase SQLAlchemy 的声明式基类，让继承它的类可以定义成数据库模型表。
-    
+
     metadata = MetaData(                # MetaDate是 SQLAlchemy 提供的类 metadata是已有属性
     naming_convention = database_naming_convention
     )
 
 
-    cread_time:Mapped[datetime] = mapped_column(
+# 创建公共时间
+class DateTimeMixin():
+    created_at:Mapped[datetime] = mapped_column(
         DateTime,
         server_default = func.now(),
         comment="创建时间",
@@ -30,6 +33,6 @@ class Base(DeclarativeBase): #是 DeclartiveBase SQLAlchemy 的声明式基类�
     updated_at:Mapped[datetime] = mapped_column(
         DateTime,
         server_default = func.now(),
-        onupdate=func.now()
+        onupdate=func.now(),
         comment="修改时间",
     )

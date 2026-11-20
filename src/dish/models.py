@@ -1,9 +1,10 @@
 from sqlalchemy import Integer,String,Text
 from src.core.base_model import Base
 from sqlalchemy.orm import Mapped, mapped_column
+from src.core.base_model import DateTimeMixin
 
 
-class Dish(Base):
+class Dish(Base,DateTimeMixin):
     __tablename__ = "dishes"
 
 
@@ -11,7 +12,7 @@ class Dish(Base):
         Integer,
         primary_key=True, 
         autoincrement=True,
-        comment="书籍id",
+        comment="菜品id",
     )
 
     name : Mapped[str] = mapped_column(
@@ -23,6 +24,5 @@ class Dish(Base):
 
     description: Mapped[str | None] = mapped_column(
         Text,
-        unique=True,
         comment="菜品名称"
     )

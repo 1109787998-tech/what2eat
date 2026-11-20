@@ -3,7 +3,7 @@ from typing import Literal #指定类型为字面量
 from pydantic import computed_field #计算属性
 
 # 继承BaseSettings管理项目配置
-class settings(BaseSettings):    
+class Settings(BaseSettings):    
     app_name:str = "Waht to Eat" #在fastapi导入这个对象调用属性，页面里面就会显示这个名字
     debug:bool = False #模式调试开关，开启fastapi调试模式，便于查看错误，关闭适合正式部署
 

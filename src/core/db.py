@@ -1,9 +1,9 @@
 # 1.导入创建数据库引擎、Session工厂的工具
 from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker
 # 2.从config.py获取配置对象
-from src.core.config import settings
+from src.core.config import Settings
 
-settings = settings()
+settings = Settings()
 
 # 3.创建数据库引擎
 # 它接收数据库 URL 和连接池参数，创建一个 Engine 对象。

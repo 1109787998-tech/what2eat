@@ -14,8 +14,8 @@ database_naming_convention ={
 }
 
 
-class Base(DeclarativeBase):
-  
+class Base(DeclarativeBase): #是 DeclartiveBase SQLAlchemy 的声明式基类，让继承它的类可以定义成数据库模型表。
+    
     metadata = MetaData(                # MetaDate是 SQLAlchemy 提供的类 metadata是已有属性
     naming_convention = database_naming_convention
     )

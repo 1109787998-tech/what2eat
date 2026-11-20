@@ -1,4 +1,3 @@
-from sqlalchemy.ext.asyncio import AsyncSession
 from src.core.db import SessionLocal
 
 # ③ 定义数据库依赖函数

@@ -14,7 +14,7 @@ from src.core.config import Settings
 from src.core.base_model import Base
 
 # 新增 导入 Dish 模型，让它注册到 Base.metadata
-from src.dish import Dish
+from src.dish.models import Dish
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -23,8 +23,14 @@ config = context.config
 # 新增  创建配置实例
 settings = Settings()   #创建配置对象，读取 .env 中的数据库参数。
 
-# 新增 将 PostgreSQL 连接地址交给 Alembic
-config.set_main_option(      #把连接地址写入当前 Alembic 配置。
+'''新增 将 PostgreSQL 连接地址交给 Alembic
+# set_main_option()：设置 Alembic 主配置中的指定参数
+# 参数1 name：配置项名称，"sqlalchemy.url" 表示数据库连接地址
+# 参数2 value：配置项的值，从 settings.database_url 获取
+# replace()：将 % 转义为 %%，适配 Alembic 的配置解析
+# 作用：让 Alembic 获得 PostgreSQL 连接地址
+'''
+config.set_main_option(      
     "sqlalchemy.url",         
     settings.database_url.replace("%", "%%")
 )

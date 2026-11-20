@@ -53,14 +53,9 @@ class settings(BaseSettings):
         case_sensitive =False           # 指定大小写不敏感
     )
 
-def test_pool(pool_size,max_overflow,pool_timeout,pool_pre_ping):
-    print("连接池大小：", pool_size)
-    print("最大额外连接：", max_overflow)
-    print("连接等待时间：", pool_timeout)
-    print("连接检查：", pool_pre_ping)
 
  #这里 ** 的作用，就是把字典中的键值对展开为函数的关键字参数
-settings = settings()
-test_pool(**settings.engine_options)
+# settings = settings()
+# test_pool(**settings.engine_options)
 #data = settings.model_dump()
 #print(settings.engine_options)

@@ -16,6 +16,13 @@ from src.dish.models import Dish
 
 # 菜品数据库操作类
 class DishRepository:
+    """负责菜品数据库操作的仓储类。
+
+    该类封装数据库查询和事务逻辑，将SQLAlchemy会话与业务服务分离。
+
+    Attributes:
+        session: 用于执行数据库操作的异步会话。
+    """
 
     # __init__：Python 特殊方法，创建实例时自动执行
     # session：外部传入的数据库会话
@@ -48,4 +55,3 @@ class DishRepository:
 
         # 把保存成功的 Dish 对象返回给调用者
         return dish
-

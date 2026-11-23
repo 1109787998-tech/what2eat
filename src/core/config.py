@@ -3,7 +3,26 @@ from typing import Literal #指定类型为字面量
 from pydantic import computed_field #计算属性
 
 # 继承BaseSettings管理项目配置
-class Settings(BaseSettings):    
+class Settings(BaseSettings):
+    """应用运行时配置。
+
+    配置值优先从环境变量读取，也可以从.env文件加载，并会在实例化时进行校验。
+
+    Attributes:
+        app_name: 应用名称。
+        debug: 是否开启调试模式。
+        db_type: 数据库类型，目前支持PostgreSQL。
+        db_host: 数据库服务器地址。
+        db_port: 数据库端口。
+        db_user: 数据库用户名。
+        db_name: 数据库名称。
+        db_password: 数据库密码。
+        pool_size: 连接池保留的持久连接数量。
+        max_overflow: 连接池繁忙时允许额外创建的连接数量。
+        pool_timeout: 获取连接的最长等待时间，单位为秒。
+        pool_pre_ping: 获取连接前是否检查连接是否仍然可用。
+    """
+
     app_name:str = "Waht to Eat" #在fastapi导入这个对象调用属性，页面里面就会显示这个名字
     debug:bool = False #模式调试开关，开启fastapi调试模式，便于查看错误，关闭适合正式部署
 

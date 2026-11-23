@@ -11,6 +11,12 @@ from datetime import datetime
 
 # 定义菜品的公共数据字段
 class DishBase(BaseModel):
+    """菜品的公共输入字段。
+
+    Attributes:
+        name: 菜品名称，最多255个字符。
+        description: 菜品描述，可为空。
+    """
 
     # 菜品必须是字符串
     # str：菜品名称必须是字符串
@@ -30,6 +36,12 @@ class DishBase(BaseModel):
 
 # 修改菜品时使用的请求模型
 class DishUpdate(BaseModel):
+    """用于部分修改菜品信息的请求模型。
+
+    Attributes:
+        name: 修改后的菜品名称，可省略或设置为None。
+        description: 修改后的菜品描述，可省略或设置为None。
+    """
 
     # str | None：允许字符串或 None
     # Field(None)：字段可省略，默认值为 None
@@ -47,10 +59,16 @@ class DishUpdate(BaseModel):
 
 # 创建菜品时使用的模型
 class DishCreate(DishBase):
-    """用于创建菜品"""
+    """用于创建菜品的请求模型。"""
 
 # 定义菜品返回给前端的数据结构
 class DishResponse(DishBase):
+    """菜品信息的响应模型。
+
+    Attributes:
+        id: 数据库生成的菜品唯一标识。
+        created_at: 菜品创建时间。
+    """
 
 # 数据库生成的菜品ID
     id:int
@@ -63,6 +81,15 @@ class DishResponse(DishBase):
 
 # 定义菜品列表的查询参数模型
 class DishQureyParams(BaseModel):
+    """菜品列表查询参数。
+
+    Attributes:
+        search: 可选的名称搜索关键词。
+        order_by: 排序字段，只能按ID、名称或创建时间排序。
+        direction: 排序方向，只能为升序或降序。
+        limit: 单次最多返回的数据条数，范围为1至500。
+        offset: 查询结果需要跳过的数据条数，必须大于或等于0。
+    """
 
     # search：我们定义的字段名
     # str | None：搜索词允许为空
@@ -82,7 +109,7 @@ class DishQureyParams(BaseModel):
 
     # asc：升序，desc：降序
     # 默认升序
-    direction = Annotated[
+    direction : Annotated[
         Literal["asc","desc"],
         Field(description="排序方向")
     ] ="asc"

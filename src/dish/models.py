@@ -5,16 +5,6 @@ from src.core.base_model import DateTimeMixin
 
 
 class Dish(Base,DateTimeMixin):
-    """菜品数据库模型，对应dishes表。
-
-    Attributes:
-        id: 菜品唯一标识，由数据库自动递增生成。
-        name: 菜品名称，最长255个字符且不可重复。
-        description: 菜品描述，可为空。
-        created_at: 菜品创建时间，由数据库服务端生成。
-        updated_at: 菜品更新时间，由数据库服务端自动维护。
-    """
-
     __tablename__ = "dishes"
 
 

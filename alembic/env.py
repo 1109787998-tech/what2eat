@@ -7,20 +7,23 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-# 新增 获取数据库配置类
+# 新增_一阶段 获取数据库配置类
 from src.core.config import Settings
 
-# 新增 orm公共的基类
+# 新增_一阶段 orm公共的基类
 from src.core.base_model import Base
 
-# 新增 导入 Dish 模型，让它注册到 Base.metadata
+# 新增_一阶段 导入 Dish 模型，让它注册到 Base.metadata
 from src.dish.models import Dish
+
+# 新增_二阶段 导入用户模型和访问令牌模型，使其表结构登记到 Base.metadata
+from src.auth.model import User, AccessToken
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
-# 新增  创建配置实例
+# 新增_一阶段  创建配置实例
 settings = Settings()   #创建配置对象，读取 .env 中的数据库参数。
 
 '''新增 将 PostgreSQL 连接地址交给 Alembic
@@ -47,7 +50,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 
 
-# 新增 讲元数据交给目标元数据
+# 新增_一阶段 讲元数据交给目标元数据
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
